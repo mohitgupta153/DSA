@@ -1,0 +1,55 @@
+############################ Mutex ######################################
+A mutex is locking mechanism used to synchronize access to a resource. Only one task (can be a thread or process based on OS abstraction) can acquire the mutex. It means there is ownership associated with mutex, and only the owner can release the lock (mutex).
+A Mutex is a lock that we set before using a shared resource and release after using it. When the lock is set, no other thread can access the locked region of code.
+Mutex lock will only be released by the thread who locked it. So this ensures that once a thread has locked a piece of code then no other thread can execute the same region until it is unlocked by the thread who locked it.
+
+A mutex is initialized and then a lock is achieved by calling the following two functions : The first function initializes a mutex and through second function any critical region in the code can be locked.
+
+
+int pthread_mutex_init(pthread_mutex_t *restrict mutex, const pthread_mutexattr_t *restrict attr) : Creates a mutex, referenced by mutex, with attributes specified by attr. If attr is NULL, the default mutex attribute (NONRECURSIVE) is used.
+Returned value
+If successful, pthread_mutex_init() returns 0, and the state of the mutex becomes initialized and unlocked.
+If unsuccessful, pthread_mutex_init() returns -1.
+
+int pthread_mutex_lock(pthread_mutex_t *mutex) : Locks a mutex object, which identifies a mutex. If the mutex is already locked by another thread, the thread waits for the mutex to become available. The thread that has locked a mutex becomes its current owner and remains the owner until the same thread has unlocked it.
+Returned value
+If successful, pthread_mutex_lock() returns 0.
+If unsuccessful, pthread_mutex_lock() returns -1.
+
+The mutex can be unlocked and destroyed by calling following two functions :The first function releases the lock and the second function destroys the lock so that it cannot be used anywhere in future.
+
+int pthread_mutex_unlock(pthread_mutex_t *mutex) : Releases a mutex object. If one or more threads are waiting to lock the mutex, pthread_mutex_unlock() causes one of those threads to return from pthread_mutex_lock() with the mutex object acquired. If no threads are waiting for the mutex, the mutex unlocks with no current owner.
+Returned value
+If successful, pthread_mutex_unlock() returns 0.
+If unsuccessful, pthread_mutex_unlock() returns -1
+
+int pthread_mutex_destroy(pthread_mutex_t *mutex) : Deletes a mutex object, which identifies a mutex. Mutexes are used to protect shared resources. mutex is set to an invalid value, but can be reinitialized using pthread_mutex_init().
+Returned value
+If successful, pthread_mutex_destroy() returns 0.
+If unsuccessful, pthread_mutex_destroy() returns -1.
+
+
+######################### Semaphores ################################3
+Semaphore is signaling mechanism (“I am done, you can carry on” kind of signal).A very significant technique to manage concurrent processes by using a simple integer value, which is known as a semaphore. Semaphore is simply a variable which is non-negative and shared between threads. 
+This variable is used to solve the critical section problem and to achieve process synchronization.
+Binary Semaphore – This is also known as mutex lock. It can have only two values – 0 and 1. Its value is initialized to 1. It is used to implement the solution of critical section problem with multiple processes.
+Counting Semaphore – Its value can range over an unrestricted domain. It is used to control access to a resource that has multiple instances.
+
+Wait operation, sleep or down operation and Signal operation, wake-up or up operation.
+Both operations are atomic and semaphore(s) is always initialized to one.Here atomic means that variable on which read, modify and update happens at the same time/moment with no pre-emption i.e. in between read, modify and update no other operation is performed that may change the variable.
+A critical section is surrounded by both operations to implement process synchronization.
+
+int s = 1;
+Wait (s) {
+	while (s <= 0); ### Trap
+	s = s - 1;
+}
+
+Signal (s) {
+	s = s + 1;
+}
+
+Limitations:
+One of the biggest limitation of semaphore is priority inversion.
+Deadlock, suppose a process is trying to wake up another process which is not in sleep state.Therefore a deadlock may block indefinitely.
+The operating system has to keep track of all calls to wait and to signal the semaphore.
