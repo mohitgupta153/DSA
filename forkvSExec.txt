@@ -16,3 +16,7 @@ global variable change in one process does not affected two other processes beca
 
 Exec - 
 The exec() system call replaces the current process with a new program.
+Control never returns to the original program unless there is an exec() err.
+replaces the contents of the process -- the memory is discarded, 
+and a whole new executable is loaded -- but the kernel state remains the same (open files, environment variables, working directory, user, etc.), 
+and the PID remains the same.
