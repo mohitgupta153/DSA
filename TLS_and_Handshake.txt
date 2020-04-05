@@ -12,9 +12,8 @@ To truly have a secure connection, you can’t just encrypt your data, you also 
 But the way they do it depends on the cipher suite being used.
 
 During the authentication portion of the TLS handshake, the client performs several cryptographically secure checks to make sure the certificate provided by the server is authentic. 
-This includes checking the digital signature and making sure the certificate originates from a trusted CA. the client performs several checks to authenticate the certificate. This includes checking the certificate’s digital signature, verifying the certificate chain, 
-and checking for any other potential problems with the certificate data (expired certificate, wrong domain name, etc). The client will also make sure the server has possession of the certificate’s private key. 
-This is done during the key exchange/generation process.
+This includes checking the digital signature and making sure the certificate originates from a trusted CA, verifying the certificate chain, and checking for any other potential problems with the certificate data 
+(expired certificate, wrong domain name, etc). The client will also make sure the server has possession of the certificate’s private key. This is done during the key exchange/generation process.
 
 During this stage, the client also verifies that the server owns the private key associated with the certificate, the client will encrypt random data with the public key that needs to be used to generate the session key. 
 The server will only be able to decrypt and use that data if it has the private key, which provides proof of possession.
