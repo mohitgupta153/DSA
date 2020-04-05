@@ -14,6 +14,9 @@ After a new child process is created, both processes will execute the next instr
 A child process uses the same pc(program counter), same CPU registers, same open files which use in the parent process.
 global variable change in one process does not affected two other processes because data/state of two processes are different.
 
+So each process child and parent both have their own copy of globalVariable and localvar.
+Though address of memory returned by malloc is same but in actual they are pointing to or mapped to different physical address.
+
 Exec - 
 The exec() system call replaces the current process with a new program.
 Control never returns to the original program unless there is an exec() err.
