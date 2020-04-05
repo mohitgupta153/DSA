@@ -1,0 +1,8 @@
+The purpose of the SSL/TLS handshake is to perform all the cryptographic work needed to have a secure connection.
+1. Exchanging encryption capabilities, Exchanging cipher suites and parameters.
+2. Authenticating the SSL certificate, Authenticating one or both parties.
+3. Exchanging/generating a session key, Creating/Exchanging symmetric session keys.
+
+TCP Connection is opened --> TCP socket is provided to SSL --> SSL handshake
+
+
