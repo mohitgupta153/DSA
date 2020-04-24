@@ -1,0 +1,13 @@
+Memory get's divided into two distinct areas:
+
+The user space, which is a set of locations where normal user processes run (i.e everything other than the kernel).
+User space is basically a form of sand-boxing, it restricts user programs so they can't mess with memory (and other resources) owned by other programs or by the OS kernel.
+
+The kernel is the core of the operating system. It normally has full access to all memory and machine hardware (and everything else on the machine).
+The role of the kernel is to manage applications running in this space from messing with each other, and the machine.
+The kernel space, which is the location where the code of the kernel is stored, and executes under.
+
+Processes running under the user space have access only to a limited part of memory, whereas the kernel has access to all of the memory. 
+Processes running in user space also don't have access to the kernel space. User space processes can only access a small part of the kernel 
+via an interface exposed by the kernel - the system calls. If a process performs a system call, a software interrupt is sent to the kernel, 
+which then dispatches the appropriate interrupt handler and continues its work after the handler has finished.
