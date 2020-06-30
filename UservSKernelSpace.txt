@@ -11,3 +11,13 @@ Processes running under the user space have access only to a limited part of mem
 Processes running in user space also don't have access to the kernel space. User space processes can only access a small part of the kernel 
 via an interface exposed by the kernel - the system calls. If a process performs a system call, a software interrupt is sent to the kernel, 
 which then dispatches the appropriate interrupt handler and continues its work after the handler has finished.
+
+The High Memory is the segment of memory that user-space programs can address. It cannot touch Low Memory.
+
+Low Memory is the segment of memory that the Linux kernel can address directly. If the kernel must access High Memory, it has to map it into its own address space first.
+
+A typical 32bit Linux virtual memory map is like:
+
+0x00000000-0xbfffffff: user process (3GB)
+
+0xc0000000-0xffffffff: kernel space (1GB)
