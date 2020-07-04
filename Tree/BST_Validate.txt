@@ -1,0 +1,17 @@
+/* Validate if a binary tree is BST or not */
+
+Instead of comapring node->val with INT_MIN, INT_MAX, pass leftNode, rightNode and comapre node->val with leftNode->val,rightNode->val
+ INT_MAX - 2147483647. INT_MIN,INT_MAX approach will fail if node->val is 2147483647 or greater.
+
+ bool isBST(TreeNode* node, TreeNode* leftNode, TreeNode* rightNode) {
+        if (node == NULL)
+            return true;
+        if ((leftNode && node->val <= leftNode->val) || (rightNode && node->val >= rightNode->val))
+            return false;
+        if (!isBST(node->left, leftNode, node) || !isBST(node->right, node, rightNode))
+            return false;
+        return true;
+    }
+    bool isValidBST(TreeNode* root) {
+        return isBST(root, NULL, NULL);
+    }
