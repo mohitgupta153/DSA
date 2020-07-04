@@ -1,0 +1,22 @@
+The diameter of a tree T is the largest of the following quantities:
+
+* the diameter of T’s left subtree
+* the diameter of T’s right subtree
+* the longest path between leaves that goes through the root of T (this can be computed from the heights of the subtrees of T)
+
+Max value of Height(leftSubtree)+Height(rightSubtree) (at any node ) is the diameter. Keep track of maxium diameter duing traversal and find the height of the tree.
+
+ int diameterOfBinaryTree(TreeNode* root) {
+        int d = 0;
+        height(root, d);
+        return d;
+    }
+    
+    int height(TreeNode* root, int& d) {
+        if (root == NULL)
+            return 0;
+        int ld = height(root->left, d);
+        int rd = height(root->right, d);
+        d = max(d,ld+rd);  //  This line maintains the max diameter.
+        return 1+max(ld,rd);
+    }
