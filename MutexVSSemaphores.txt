@@ -3,6 +3,7 @@ A mutex is locking mechanism used to synchronize access to a resource. Only one 
 A Mutex is a lock that we set before using a shared resource and release after using it. When the lock is set, no other thread can access the locked region of code.
 Mutex lock will only be released by the thread who locked it. So this ensures that once a thread has locked a piece of code then no other thread can execute the same region until it is unlocked by the thread who locked it.
 
+"Mutexes are typically used to serialise access to a section of re-entrant code that cannot be executed concurrently by more than one thread. A mutex object only allows one thread into a controlled section, forcing other threads which attempt to gain access to that section to wait until the first thread has exited from that section."
 A mutex is initialized and then a lock is achieved by calling the following two functions : The first function initializes a mutex and through second function any critical region in the code can be locked.
 
 
@@ -29,11 +30,16 @@ If successful, pthread_mutex_destroy() returns 0.
 If unsuccessful, pthread_mutex_destroy() returns -1.
 
 
-######################### Semaphores ################################3
+######################### Semaphores ################################
 Semaphore is signaling mechanism (“I am done, you can carry on” kind of signal).A very significant technique to manage concurrent processes by using a simple integer value, which is known as a semaphore. Semaphore is simply a variable which is non-negative and shared between threads. 
 This variable is used to solve the critical section problem and to achieve process synchronization.
 Binary Semaphore – This is also known as mutex lock. It can have only two values – 0 and 1. Its value is initialized to 1. It is used to implement the solution of critical section problem with multiple processes.
 Counting Semaphore – Its value can range over an unrestricted domain. It is used to control access to a resource that has multiple instances.
+A semaphore can be used by threads of different process to achieve synchronization.
+a mutex can be released by a thread only if it was taken by the same thread. This isn't necessary for a semaphore.
+
+Effectively this makes semaphores an IPC mechanism while mutexes not so much.
+"A semaphore restricts the number of simultaneous users of a shared resource up to a maximum number. Threads can request access to the resource (decrementing the semaphore), and can signal that they have finished using the resource (incrementing the semaphore)."
 
 Wait operation, sleep or down operation and Signal operation, wake-up or up operation.
 Both operations are atomic and semaphore(s) is always initialized to one.Here atomic means that variable on which read, modify and update happens at the same time/moment with no pre-emption i.e. in between read, modify and update no other operation is performed that may change the variable.
