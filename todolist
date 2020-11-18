@@ -1,0 +1,52 @@
+Linux User authentication module....SSH role 
+TCP/IP packet and related concepts
+IPC methods and example
+RPC methods and example
+Socket programming
+
+Linux process creation and forking
+File handling in C 
+String functions in C/C++
+passing array to function call
+quick,insertion,merge
+
+Check code for IPC shared memory, Semaphores, signals
+Check code for Socket program
+
+linkedlist palindrome recursion
+remove loop in linkedlist unordered_map
+
+AuthenticationMethods publickey,password
+
+priority queue, deque 
+Simple Containers
+            Pair
+
+Sequenced Containers
+
+vector, list, forward_list, deque
+
+Container Adapters
+
+stack, queue
+
+priority_queue
+
+Associative Containers
+
+set, multiset
+
+map, multimap
+
+Unordered_set, unordered_map
+
+#######3 C########
+typedef, volatile with const, function pointer as callback function,
+iterative depth tree traversal
+
+######## C++ #############
+initializer list, namespace, aggregation, association, composition, move constructor, multiple inheritence, 
+
+####### DS ################
+Infix to Postfix, Circular queue
+stack using queue, queue using stack
